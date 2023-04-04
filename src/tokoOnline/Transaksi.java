@@ -12,24 +12,6 @@ public class Transaksi extends Barang {
     ArrayList<Integer> idBarang = new ArrayList<Integer>();
     ArrayList<Integer> banyak = new ArrayList<Integer>();
 
-    public Transaksi() {
-//        this.idMember.add(0);
-//        this.idBarang.add(0);
-//        this.banyak.add(2);
-//
-//        this.idMember.add(0);
-//        this.idBarang.add(1);
-//        this.banyak.add(3);
-//
-//        this.idMember.add(1);
-//        this.idBarang.add(0);
-//        this.banyak.add(1);
-//
-//        this.idMember.add(1);
-//        this.idBarang.add(2);
-//        this.banyak.add(2);
-    }
-
     public void setTransaksi(Barang brg, int idMember, int idBarang, int banyaknya) {
         this.idMember.add(idMember);
         this.idBarang.add(idBarang);
@@ -43,6 +25,7 @@ public class Transaksi extends Barang {
 
         String cek = "";
         String cekk = "";
+        String log = "";
         int akeh, idMember;
 
         do {
@@ -54,6 +37,10 @@ public class Transaksi extends Barang {
             }
         } while (idMember >= c.getJmlMember() && idMember >= 0);
 
+        do {
+            System.out.println("Apakah anda ingin mengakhiri sesi ini? (Y/N)");
+        } while (log.equalsIgnoreCase("y"));
+        
         try {
             hmm.bot();
         } catch (AWTException ex) {
@@ -91,7 +78,7 @@ public class Transaksi extends Barang {
                     akeh = i.nextInt();
                     banyak.add(akeh);
                     if (akeh > a.getStok(temp)) {
-                        System.out.println("Kebanyakan");
+                        System.out.println("Item tidak boleh melebihi stok");
                         banyak.remove(ii);
                         
                         System.out.print("\nApakah mau coba lagi ? (Y/N) ");

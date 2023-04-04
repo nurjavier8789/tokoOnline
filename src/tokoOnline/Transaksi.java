@@ -42,12 +42,13 @@ public class Transaksi extends Barang {
         uh hmm = new uh();
 
         String cek = "";
-        int akeh,idMember;
-        
+        String cekk = "";
+        int akeh, idMember;
+
         do {
             System.out.print("Masukkan ID Member > ");
             idMember = i.nextInt();
-            
+
             if (idMember >= c.getJmlMember() && idMember >= 0) {
                 System.out.println("Maaf ID Member tidak diketahui...\nSilahkan coba lagi");
             }
@@ -84,11 +85,25 @@ public class Transaksi extends Barang {
                 System.out.println("Maaf Stok Habis >_<");
                 idBarang.remove(ii);
             } else {
-                System.out.print(a.getNamaBarang(idBarang.get(ii)) + " sebanyak: ");
-                akeh = i.nextInt();
-                banyak.add(akeh);
-                ii++;
-                editStok(temp, getStok(temp) - akeh);
+                do {
+                    cekk = "";
+                    System.out.print(a.getNamaBarang(idBarang.get(ii)) + " sebanyak: ");
+                    akeh = i.nextInt();
+                    banyak.add(akeh);
+                    if (akeh > a.getStok(temp)) {
+                        System.out.println("Kebanyakan");
+                        banyak.remove(ii);
+                        
+                        System.out.print("\nApakah mau coba lagi ? (Y/N) ");
+                        cekk = i.next();
+                        if (cekk.equalsIgnoreCase("n")) {
+                            idBarang.remove(ii);
+                        }
+                    } else {
+                        ii++;
+                        editStok(temp, getStok(temp) - akeh);
+                    }
+                } while (cekk.equalsIgnoreCase("y"));
             }
             System.out.print("\nApakah mau nambah barang? (Y/N) ");
             cek = i.next();
